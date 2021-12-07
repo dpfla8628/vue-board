@@ -2,16 +2,19 @@ export default[
     {
         writer:'이예림',
         title:'vue',
-        content:'1'
+        content:'1',
+        price:'1000'
     },
     {
         writer:'이예림',
         title:'vue',
-        content:'2'
+        content:'2',
+        price:'1000'
     },
     {
         writer:'이예림',
         title:'vue',
-        content:'3'
+        content:'3',
+        price:'1000'
     }
 ]

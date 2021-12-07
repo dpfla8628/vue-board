@@ -6,11 +6,13 @@
                 <td>글쓴이</td>
                 <td>제목</td>
                 <td>내용</td>
+                <td>가격</td>
             </tr>
             <tr :key="index" v-for="(value,index) in data" @click="detail(index)">
                 <td>{{value.writer}}</td>
                 <td>{{value.title}}</td>
                 <td>{{value.content}}</td>
+                <td>{{value.price | comma}}</td>
             </tr>
         </table> 
         <button @click="write">글쓰기</button>   
@@ -40,6 +42,11 @@ export default {
                 }
             })
         }
-    },  
+    },
+    filters: {
+        comma(val) {
+            return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
+    }
 }
 </script>

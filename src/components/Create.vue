@@ -4,6 +4,8 @@
         <input v-model="writer" placeholder="글쓴이" />
         <input v-model="title" placeholder="제목" />
         <textarea v-model="content" placeholder="내용" />
+        <!-- filter test -->
+        <input v-model="price" placeholder="원하는 가격을 입력하세요" />
         <button @click="index!==undefined?update() : write()">{{index!==undefined?'수정':'작성'}}</button>
     </div>
 </template>
@@ -18,7 +20,8 @@ export default {
             index:index,
             writer:index!==undefined ? data[index].writer :"",
             title:index!==undefined ? data[index].title :"",
-            content:index!==undefined ? data[index].content :""
+            content:index!==undefined ? data[index].content :"",
+            price:index!==undefined ? data[index].price :""
         }
     },
     methods: {
@@ -27,6 +30,7 @@ export default {
                 writer:this.writer,
                 title:this.title,
                 content:this.content,
+                price:this.price,
             })
             this.$router.push({
                 path:'/'
@@ -36,6 +40,7 @@ export default {
             data[this.index].writer = this.writer
             data[this.index].title = this.title
             data[this.index].content = this.content
+            data[this.index].price = this.price
             this.$router.push({
                 path:'/'
             })

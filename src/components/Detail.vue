@@ -3,6 +3,7 @@
         <div>{{data.writer}}</div>
         <div>{{data.title}}</div>
         <div>{{data.content}}</div>
+        <div>{{data.price | comma}}</div>
         <button @click="updateData">수정</button>
         <button @click="deleteData">삭제</button>
     </div>
@@ -34,5 +35,10 @@ export default {
             })
         }
     },
+    filters: {
+        comma(val) {
+            return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
+    }
 }
 </script>
