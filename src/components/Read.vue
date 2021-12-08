@@ -2,6 +2,7 @@
 <template>
     <div>
         <table>
+            <h1>{{now}}</h1>
             <tr>
                 <td>글쓴이</td>
                 <td>제목</td>
@@ -16,17 +17,23 @@
             </tr>
         </table> 
         <button @click="write">글쓰기</button>   
+        <!-- <button @click="closeToday">팝업 창 닫기</button>    -->
     </div>
 </template>
 <script>
 import data from '@/data'
-
+const moment = require('moment')
 export default {
     name :'Read',
     data(){
         return {
-            data:data
+            data: data,
+            now: 0
         }
+    },
+    mounted () {
+        this.date()
+        setInterval(this.date.bind(this), 1000)
     },
     methods: {
         write(){
@@ -41,7 +48,19 @@ export default {
                     contentId : index
                 }
             })
-        }
+        },
+        date () {
+            this.now = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+        },
+        setCookie (name, value, expiredays) {
+        var todayDate = new Date()
+        todayDate.setHours(22,0,0,0)
+        // cookie Time test
+        document.cookie = name + '=' + value + '; path=/; expires=' + todayDate.toUTCString()
+        },
+        closeToday () {
+        this.setCookie('popToday', 'close', 1)
+        },
     },
     filters: {
         comma(val) {
